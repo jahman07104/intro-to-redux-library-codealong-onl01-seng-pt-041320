@@ -1,10 +1,19 @@
 // ./src/index.js
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore } from 'redux'; /* code change */
-import shoppingListItemReducer from './reducers/shoppingListItemReducer.js';
-import App from './App';
-import './index.css';
+function candyReducer(state = [], action) {
+  switch (action.type) {
+    case 'ADD_CANDY':
+      return [...state, action.candy];
+    default:
+      return state;
+  }
+}
 
-ReactDOM.render(<App />, document.getElementById('root'));
+function render() {
+  let container = document.getElementById('container');
+  if(store.getState()) {
+    container.textContent = store.getState().join(' ')
+  } else {
+    throw new Error("the store's state has not been defined yet")
+  }
+};
